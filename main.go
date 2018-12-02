@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"os"
 
@@ -13,7 +14,15 @@ func init() {
 }
 
 func main() {
+	flag.Usage = func() {
+		fmt.Fprintf(flag.CommandLine.Output(), "Usage: %s <file>\n", os.Args[0])
+	}
+
 	flag.Parse()
+	if len(flag.Args()) != 1 {
+		flag.Usage()
+		os.Exit(1)
+	}
 
 	dev, err := evdev.Open(flag.Arg(0))
 	if err != nil {
