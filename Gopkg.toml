@@ -1,7 +1,0 @@
-[[constraint]]
-  branch = "master"
-  name = "github.com/gvalkov/golang-evdev"
-
-[prune]
-  go-tests = true
-  unused-packages = true
